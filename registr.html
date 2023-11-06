@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and signup in GameStore</title>
+    <link rel="icon" type="images/x-icon" href="c:\Users\User\Desktop\favicon\d_cube_scan_icon_257072.ico">
+    <style>
+        body {
+            background: #E37938;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 95vh;
+            font-family: montserrat;
+        }
+
+        #wrapper {
+            width: 500px;
+            height: 370px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 12px 12px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        #wrapper h1 {
+            color: #fff;
+        }
+
+        .form {
+            width: 500px;
+            height: 370px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: transform 0.6s ease-in-out;
+            text-align: center;
+        }
+
+        .form input {
+            width: 80%;
+            height: 35px;
+            margin-bottom: 15px;
+            padding: 0 0 0 15px;
+        }
+
+        #login-side {
+            background-color: #000;
+            transform: translateX(0);
+        }
+
+        #signup-side {
+            background-color: #000;
+            transform: translateX(-100%);
+        }
+
+        .switch-animation {
+            margin-top: 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .switch-animation a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        .switch-animation a:hover {
+            color: #6ab5b9;
+        }
+
+        button {
+            display: block;
+            margin: 2% auto 0;
+            border: none;
+            background: #1574c3;
+            padding: 10px 175px;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 18px;
+            border-radius: 5px;
+            font-family: montserrat;
+            font-weight: 700;
+        }
+
+        #successMessage {
+            display: none;
+        }
+
+        #successText {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <form id="login-side" class="form">
+            <h1><span class="yellow-text">Game</span><span class="black-text">Store</span></h1>
+            <h1>Login Form</h1>
+            <input type="text" id="username" placeholder="Your Username...">
+            <input type="password" id="password" placeholder="Your Password...">
+            <button type="button" onclick="checkLogin()">Submit</button>
+            <p class="switch-animation">Don't have an account? <a href="#">Sign up</a></p>
+        </form>
+
+        <form id="signup-side" class="form">
+            <h1>Signup Form</h1>
+            <input type="text" id="newUsername" placeholder="Enter Username...">
+            <input type="email" id="email" placeholder="Enter Email...">
+            <input type="password" id="newPassword" placeholder="Enter Password">
+            <button type="button" onclick="showSuccess('signup')">Submit</button>
+            <p class="switch-animation">Already have an account? <a href="#">Login</a></p>
+        </form>
+
+        <div id="successMessage">
+            <p id="successText"></p>
+        </div>
+
+    </div>
+
+    <script>
+        const formArea = document.getElementById('wrapper');
+        const loginDiv = document.getElementById('login-side');
+        const signupDiv = document.getElementById('signup-side');
+
+        const switchEffect = document.querySelectorAll('.switch-animation a');
+
+        switchEffect[0].addEventListener('click', () => {
+            loginDiv.style.transform = 'translateX(-100%)';
+            signupDiv.style.transform = 'translateX(0)';
+        });
+
+        switchEffect[1].addEventListener('click', () => {
+            loginDiv.style.transform = 'translateX(0)';
+            signupDiv.style.transform = 'translateX(100%)';
+        });
+
+        function checkLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === 'user123' && password === 'password123') {
+                showSuccess('login');
+            } else {
+                alert('Invalid username or password');
+            }
+        }
+
+        function showSuccess(formType) {
+    const successMessage = document.getElementById('successMessage');
+    const successText = document.getElementById('successText');
+    successMessage.style.display = 'block';
+    
+    if (formType === 'login') {
+        successText.innerText = 'You logged in quickly';
+    } else if (formType === 'signup') {
+        successText.innerText = 'You registered successfully';
+    }
+}
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
